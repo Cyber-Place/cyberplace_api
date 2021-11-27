@@ -14,8 +14,8 @@ export const authTypeDef = `
         Password: String!
     }`;
 
-export const validationQueries = `
-    validateToken: String!
+export const ValidationQueries = `
+    validateToken(token: String!): String!
 `;
 
 export const AuthMutations = `

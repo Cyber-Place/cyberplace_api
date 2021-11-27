@@ -1,3 +1,3 @@
-export const url = 'host.docker.internal'
+export const url = 'localhost'
 export const port = '8000'
-export const entryPoint = 'api/v1/'
+export const entryPoint = 'api/v1'

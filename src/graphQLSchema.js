@@ -6,6 +6,7 @@ import { mergeSchemas } from './utilities';
 
 import {
 	AuthMutations,
+	ValidationQueries,
     authTypeDef
 } from './auth/typeDefs';
 
@@ -23,6 +24,9 @@ const mergedAuthTypeDefs = mergeSchemas(
 	[
 		'scalar JSON',
 		authTypeDef
+	],
+	[
+		ValidationQueries
 	],
 	[
 		AuthMutations
