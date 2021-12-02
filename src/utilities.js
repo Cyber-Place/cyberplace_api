@@ -6,26 +6,34 @@ import { formatError } from 'graphql';
  * @param {string} url
  * @param {string} method
  * @param {object} [body]
+ * @param {object} [headers]
  * @param {boolean} [fullResponse]
  * @return {Promise.<*>} - promise with the error or the response object
  */
-export async function generalRequest(url, method, body, fullResponse) {
+export async function generalRequest(url, method, body, headers, fullResponse) {
+	console.log(arguments[3])
 	const parameters = {
 		method,
 		uri: encodeURI(url),
 		body,
+		headers,
 		json: true,
 		resolveWithFullResponse: fullResponse
 	};
+	
 	if (process.env.SHOW_URLS) {
 		// eslint-disable-next-line
 		console.log(url);
 	}
 
 	try {
-		return await request(parameters);
-	} catch (err) {
-		return err;
+        console.log("Petición enviada a: ", url);
+        return await request(parameters);
+    } catch (err) {
+        console.log("Se ha presentado un fallo");
+        return err;
+    } finally{
+		console.log("Petición exitosa")
 	}
 }
 
