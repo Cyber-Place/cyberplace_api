@@ -1,23 +1,22 @@
 import request from 'request-promise-native';
 import { formatError } from 'graphql';
-
+import axios from "axios";
 /**
  * Creates a request following the given parameters
  * @param {string} url
  * @param {string} method
- * @param {object} [body]
+ * @param {object} [data]
  * @param {object} [headers]
  * @param {boolean} [fullResponse]
  * @return {Promise.<*>} - promise with the error or the response object
  */
-export async function generalRequest(url, method, body, headers, fullResponse) {
+export async function generalRequest(url, method, data, headers, fullResponse) {
 	console.log(arguments[3])
 	const parameters = {
 		method,
-		uri: encodeURI(url),
-		body,
+		url: encodeURI(url),
+		data,
 		headers,
-		json: true,
 		resolveWithFullResponse: fullResponse
 	};
 	
@@ -28,7 +27,7 @@ export async function generalRequest(url, method, body, headers, fullResponse) {
 
 	try {
         console.log("Petición enviada a: ", url);
-        return await request(parameters);
+		return (await axios(parameters)).data
     } catch (err) {
         console.log("Se ha presentado un fallo");
         return err;
