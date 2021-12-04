@@ -1,5 +1,5 @@
 export const authTypeDef = `
-    type AccessToken{
+    type AccessToken {
         accessToken : String!
     }
     type UserLogin {
@@ -9,24 +9,39 @@ export const authTypeDef = `
         data : AccessToken!
     }
     input UserLoginInput {
-        UserName: String!
-        Password: String!
+        username: String!
+        password: String!
     }
-
-
-
-    type Validation{
+    type UserGeneric {
         statusCode : Int!
         method : String!
         message : String!
     }
-
+    input UserRegisterInput {
+        username : String!
+        full_name : String!
+        email : String!
+        password : String!
+    }
+    input UserResetInput {
+        password: String!
+        new_password: String!
+    }
+    type UserGenericData {
+        statusCode : Int!
+        method : String!
+        message : String!
+        data : String!
+    }
     `;
 
 export const authQueries = `
-    authorize(jwt: String!): Validation!
+    authorize(jwt: String!): UserGeneric!
+    getusername(jwt: String!): UserGenericData!
 `;
 
 export const authMutations = `
     login(user: UserLoginInput!): UserLogin!
+    register(user: UserRegisterInput!): UserGeneric!
+    reset(user: UserResetInput!, jwt: String!): UserGeneric!
 `;

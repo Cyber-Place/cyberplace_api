@@ -27,6 +27,7 @@ export async function generalRequest(url, method, data, headers, fullResponse) {
 
 	try {
         console.log("Petición enviada a: ", url);
+		console.log("Parameters: ", parameters)
 		return (await axios(parameters)).data
     } catch (err) {
         console.log("Se ha presentado un fallo");
