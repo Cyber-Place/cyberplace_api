@@ -6,7 +6,9 @@ import { mergeSchemas } from './utilities';
 
 
 
-//Importar los motations, queries, typesdef y resolvers de cada ms
+//Importar los mUtations, queries, typesdef y resolvers de cada ms
+
+// Auth:
 import {
 	authMutations,
 	authQueries,
@@ -15,31 +17,40 @@ import {
 
 import authResolvers from './gateway/account/auth/resolvers';
 
+// Address:
+import {
+	addressMutations,
+	addressQueries,
+	addressTypeDef
+} from './gateway/account/address/typeDefs';
+
+import addressResolvers from './gateway/account/address/resolvers';
+
 
 
 // merge the auth typeDefs 
-const mergedAuthTypeDefs = mergeSchemas(
+
+//Auth:
+const mergedTypeDefs = mergeSchemas(
 	[
 		'scalar JSON',
-		authTypeDef
+		authTypeDef, 
+		addressTypeDef
 	],
 	[
-		authQueries
+		authQueries, 
+		addressQueries
 	],
 	[
-		authMutations
+		authMutations, 
+		addressMutations
 	]
 );
 
 
-
-
 // Generate the schema object from your types definition.
-export default makeExecutableSchema({
-	typeDefs: mergedAuthTypeDefs,
-	resolvers: merge(
-		{ JSON: GraphQLJSON }, // allows scalar JSON
-		authResolvers
-	)
-});
 
+export default makeExecutableSchema({
+	typeDefs: mergedTypeDefs,
+	resolvers: merge({ JSON: GraphQLJSON }, authResolvers, addressResolvers),
+});

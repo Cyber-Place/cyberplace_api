@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 export const addressTypeDef = `
     input AddressInput {
         country : String!
@@ -40,4 +38,3 @@ export const addressMutations = `
     add(address: AddressInput!, jwt: String!): AddessGeneric!
     delete(address: AddressInput!, jwt: String!): AddessGeneric!
 `;
->>>>>>> Stashed changes
