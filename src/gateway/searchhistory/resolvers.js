@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { generalRequest, getRequest } from '../../utilities';
 import { url, port, entryPoint } from './server';
 
