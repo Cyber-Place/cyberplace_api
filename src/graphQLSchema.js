@@ -5,7 +5,7 @@ import { makeExecutableSchema } from 'graphql-tools';
 import { mergeSchemas } from './utilities';
 
 
-
+//ACCOUNT_MS
 //Importar los mUtations, queries, typesdef y resolvers de cada ms
 
 // Auth:
@@ -27,6 +27,18 @@ import {
 import addressResolvers from './gateway/account/address/resolvers';
 
 
+//SEARCH_HISTORY_MS
+
+//Importar los mUtations, queries, typesdef y resolvers de cada ms
+
+import {
+	historyMutations,
+	historyQueries,
+	historyTypeDef
+} from './gateway/searchhistory/typeDefs';
+
+import historyResolvers from './gateway/searchhistory/resolvers';
+
 
 // merge the auth typeDefs 
 
@@ -35,15 +47,18 @@ const mergedTypeDefs = mergeSchemas(
 	[
 		'scalar JSON',
 		authTypeDef, 
-		addressTypeDef
+		addressTypeDef,
+		historyTypeDef
 	],
 	[
 		authQueries, 
-		addressQueries
+		addressQueries,
+		historyQueries
 	],
 	[
 		authMutations, 
-		addressMutations
+		addressMutations,
+		historyMutations
 	]
 );
 
@@ -52,5 +67,9 @@ const mergedTypeDefs = mergeSchemas(
 
 export default makeExecutableSchema({
 	typeDefs: mergedTypeDefs,
-	resolvers: merge({ JSON: GraphQLJSON }, authResolvers, addressResolvers),
+	resolvers: merge({ JSON: GraphQLJSON }, 
+		authResolvers,
+		addressResolvers,
+		historyResolvers
+	),
 });

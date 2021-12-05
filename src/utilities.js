@@ -7,16 +7,18 @@ import axios from "axios";
  * @param {string} method
  * @param {object} [data]
  * @param {object} [headers]
+ * @param {object} [params]
  * @param {boolean} [fullResponse]
  * @return {Promise.<*>} - promise with the error or the response object
  */
-export async function generalRequest(url, method, data, headers, fullResponse) {
+export async function generalRequest(url, method, data, headers, params, fullResponse) {
 	console.log(arguments[3])
 	const parameters = {
 		method,
 		url: encodeURI(url),
 		data,
 		headers,
+		params,
 		resolveWithFullResponse: fullResponse
 	};
 	
