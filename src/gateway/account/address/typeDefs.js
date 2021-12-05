@@ -12,11 +12,15 @@ export const addressTypeDef = `
         message : String!
     }
     type Address {
-        country : String!
-        city : String!
-        state : String!
-        zip_code : String!
-        address : String!
+        AddressID: String!
+        Country: String!
+        City: String!
+        State: String!
+        ZipCode: String!
+        Address: String!
+        UserName: String!
+        CreatedAt: String!
+        UpdatedAt: String!
     }
     type AddressList {
         statusCode : Int!
