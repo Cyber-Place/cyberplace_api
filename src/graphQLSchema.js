@@ -39,6 +39,18 @@ import {
 
 import historyResolvers from './gateway/searchhistory/resolvers';
 
+//PRODUCT_PURCHASE_MS
+
+//Importar los mUtations, queries, typesdef y resolvers de cada ms
+
+import {
+	purchaseMutations,
+	purchaseQueries,
+	purchaseTypeDef
+} from './gateway/product_purchase/typeDefs';
+
+import purchaseResolvers from './gateway/product_purchase/resolvers';
+
 
 // merge the auth typeDefs 
 
@@ -48,17 +60,20 @@ const mergedTypeDefs = mergeSchemas(
 		'scalar JSON',
 		authTypeDef, 
 		addressTypeDef,
-		historyTypeDef
+		historyTypeDef,
+		purchaseTypeDef,
 	],
 	[
 		authQueries, 
 		addressQueries,
-		historyQueries
+		historyQueries,
+		purchaseQueries,
 	],
 	[
 		authMutations, 
 		addressMutations,
-		historyMutations
+		historyMutations,
+		purchaseMutations,
 	]
 );
 
@@ -70,6 +85,7 @@ export default makeExecutableSchema({
 	resolvers: merge({ JSON: GraphQLJSON }, 
 		authResolvers,
 		addressResolvers,
-		historyResolvers
+		historyResolvers,
+		purchaseResolvers,
 	),
 });
