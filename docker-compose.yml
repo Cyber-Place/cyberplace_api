@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  cyberplace_api:
+    image: cyberplace_api
+    build:
+      context: .
+    network_mode: host
+

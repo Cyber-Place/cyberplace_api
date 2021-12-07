@@ -74,6 +74,14 @@ import {
 
 import purchaseResolvers from './gateway/product_purchase/resolvers';
 
+import{
+  orderTypeDef,
+  orderQueries,
+  orderMutations
+
+} from './gateway/order/typeDefs';
+
+import orderResolvers from './gateway/order/resolvers';
 
 
 // merge the auth typeDefs 
@@ -86,15 +94,16 @@ const mergedTypeDefs = mergeSchemas(
 		addressTypeDef,
 		historyTypeDef,
 		purchaseTypeDef,
+    orderTypeDef,
 		productTypeDef,
 		ratingTypeDef,
-
 	],
 	[
 		authQueries, 
 		addressQueries,
 		historyQueries,
 		purchaseQueries,
+    orderQueries,
 		productQueries,
 		ratingQueries,
 	],
@@ -103,6 +112,7 @@ const mergedTypeDefs = mergeSchemas(
 		addressMutations,
 		historyMutations,
 		purchaseMutations,
+    orderMutations,
 		productMutations,
 		ratingMutations,
 	]
@@ -118,6 +128,7 @@ export default makeExecutableSchema({
 		addressResolvers,
 		historyResolvers,
 		purchaseResolvers,
+    orderResolvers,
 		productResolvers,
 		ratingResolvers,
 	),
