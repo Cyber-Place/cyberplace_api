@@ -22,6 +22,12 @@ const resolvers = {
     },
     orderStateUpdate: (_, {id, state}) => {
       return generalRequest(`${URL}/order_state/${id}`, 'PUT', state);
+    },
+    orderCreate: (_, {order}) => {
+      return generalRequest(`${URL}/order`, 'POST', order);
+    },
+    orderUpdate: (_, {id, order}) => {
+      return generalRequest(`${URL}/order/${id}`, 'PUT', order);
     }
 
   }

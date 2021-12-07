@@ -8,6 +8,31 @@ export const orderTypeDef = `
     created_at: String
     update_at: String
   }
+  type orderModel {
+    id: Int!
+    user_id: Int!
+    product_id: Int!
+    quantity: Int!
+    price: Float!
+    total_price: Float!
+    shipping_price: Float!
+    payment_id: Int!
+    shipping_address_id: Int!
+    tracking_url: String
+    created_at: String!
+    update_at: String!
+    code: Float!
+  }
+  input orderCreateInput {
+    user_id: Int!
+    product_id: Int!
+    quantity: Int!
+    price: Float!
+    total_price: Float!
+    shipping_price: Float!
+    payment_id: Int!
+    shipping_address_id: Int!
+  }
   input orderStateUpdate {
     statuses_id: Int!
     description: String!
@@ -25,10 +50,12 @@ export const orderTypeDef = `
 `;
 export const orderQueries = `
   orderStateById(id: Int!): orderStateModel!
-  orderStateByOrderId(orderId: orderIdInput!): orderStateModel!
+  orderStateByOrderId(orderId: orderIdInput!): [orderStateModel!]
 `;
 export const orderMutations = `
   orderStateCreate(state: orderStateCreateInput!): orderStateModel!
   orderStateDelete(id: Int!): String!
   orderStateUpdate(id: Int!, state: orderStateUpdate!): String!
+  orderCreate(order: orderCreateInput!): orderModel!
+  orderUpdate(id: Int!, order: orderCreateInput!): String
 `;
