@@ -2,6 +2,7 @@ import merge from 'lodash.merge';
 import GraphQLJSON from 'graphql-type-json';
 import { makeExecutableSchema } from 'graphql-tools';
 
+
 import { mergeSchemas } from './utilities';
 
 
@@ -48,6 +49,19 @@ import {
 
 import historyResolvers from './gateway/searchhistory/resolvers';
 
+//product_rating_MS
+
+//Importar los mUtations, queries, typesdef y resolvers de cada ms
+
+import {
+	ratingMutations,
+	ratingQueries,
+	ratingTypeDef
+} from './gateway/product_rating/typeDefs';
+
+import ratingResolvers from './gateway/product_rating/resolvers';
+
+
 //PRODUCT_PURCHASE_MS
 
 //Importar los mUtations, queries, typesdef y resolvers de cada ms
@@ -61,6 +75,7 @@ import {
 import purchaseResolvers from './gateway/product_purchase/resolvers';
 
 
+
 // merge the auth typeDefs 
 
 //Auth:
@@ -72,6 +87,8 @@ const mergedTypeDefs = mergeSchemas(
 		historyTypeDef,
 		purchaseTypeDef,
 		productTypeDef,
+		ratingTypeDef,
+
 	],
 	[
 		authQueries, 
@@ -79,6 +96,7 @@ const mergedTypeDefs = mergeSchemas(
 		historyQueries,
 		purchaseQueries,
 		productQueries,
+		ratingQueries,
 	],
 	[
 		authMutations, 
@@ -86,6 +104,7 @@ const mergedTypeDefs = mergeSchemas(
 		historyMutations,
 		purchaseMutations,
 		productMutations,
+		ratingMutations,
 	]
 );
 
@@ -100,5 +119,6 @@ export default makeExecutableSchema({
 		historyResolvers,
 		purchaseResolvers,
 		productResolvers,
+		ratingResolvers,
 	),
 });
