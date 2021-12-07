@@ -23,6 +23,10 @@ export const orderTypeDef = `
     update_at: String!
     code: Float!
   }
+  type orderBuyAgain {
+    product_id: Int!
+    quantity: Int!
+  }
   input orderCreateInput {
     user_id: Int!
     product_id: Int!
@@ -47,10 +51,19 @@ export const orderTypeDef = `
   input orderIdInput {
     order_id: Int!
   }
+  input userIdInput {
+    user_id: Int!
+  }
+  input orderTracking {
+    tracking_url: String!
+  }
 `;
 export const orderQueries = `
   orderStateById(id: Int!): orderStateModel!
   orderStateByOrderId(orderId: orderIdInput!): [orderStateModel!]
+  orderShow(id: Int!, user_id: userIdInput!): orderModel!
+  orderBuyAgain(id: Int!): orderBuyAgain!
+  orderHistory(user_id: userIdInput!): [orderModel!]
 `;
 export const orderMutations = `
   orderStateCreate(state: orderStateCreateInput!): orderStateModel!
@@ -58,4 +71,6 @@ export const orderMutations = `
   orderStateUpdate(id: Int!, state: orderStateUpdate!): String!
   orderCreate(order: orderCreateInput!): orderModel!
   orderUpdate(id: Int!, order: orderCreateInput!): String
+  orderDelete(id: Int!): String
+  orderTracking(id: Int!, tracking: orderTracking!): String
 `;

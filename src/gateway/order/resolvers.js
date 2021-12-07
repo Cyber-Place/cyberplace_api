@@ -11,6 +11,15 @@ const resolvers = {
     },
     orderStateByOrderId: (_, {orderId}) => {
       return generalRequest(`${URL}/states`, 'GET', orderId);
+    },
+    orderShow: (_, {id, user_id}) => {
+      return generalRequest(`${URL}/order/${id}`, 'GET', user_id); 
+    },
+    orderBuyAgain: (_, {id}) => {
+      return generalRequest(`${URL}/order-buy-again/${id}`, 'GET'); 
+    },
+    orderHistory: (_, {user_id}) => {
+      return generalRequest(`${URL}/order-history`, 'GET', user_id); 
     }
   },
   Mutation: {
@@ -28,8 +37,13 @@ const resolvers = {
     },
     orderUpdate: (_, {id, order}) => {
       return generalRequest(`${URL}/order/${id}`, 'PUT', order);
+    },
+    orderDelete: (_, {id}) => {
+      return generalRequest(`${URL}/order/${id}`, 'DELETE');
+    },
+    orderTracking: (_, {id, tracking}) => {
+      return generalRequest(`${URL}/order-tracking/${id}`, 'POST', tracking);
     }
-
   }
 }
 export default resolvers
