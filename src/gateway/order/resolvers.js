@@ -9,6 +9,9 @@ const resolvers = {
     orderStateById: (_, {id}) => {
       return generalRequest(`${URL}/order_state/${id}`, 'GET');
     },
+    orderStateByOrderId: (_, {orderId}) => {
+      return generalRequest(`${URL}/states`, 'GET', orderId);
+    }
   },
   Mutation: {
     orderStateCreate: (_,{ state }) =>{
