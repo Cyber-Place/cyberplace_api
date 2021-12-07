@@ -1,5 +1,5 @@
 //export const url = '172.17.0.2'
-export const url = 'host.docker.internal'
-//export const url = 'localhost'
+// export const url = 'host.docker.internal'
+export const url = 'localhost'
 export const port = '3030'
 export const entryPoint = 'shopping-cart'
