@@ -1,5 +1,5 @@
 // export const url = '172.0.0.1'
 export const url = 'localhost'
 // export const url = 'host.docker.internal'
-export const port = '8000'
+export const port = '8001'
 export const entryPoint = 'api'
