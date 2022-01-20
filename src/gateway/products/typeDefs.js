@@ -4,12 +4,14 @@ export const productTypeDef = `
         price : Int!
         description : String!
         stars: Int!
+        image: String!
     }
     type Product {
         name : String!
         price : Int!
         description : String!
         stars: Int!
+        img_url: String!
     }
     `;
 
