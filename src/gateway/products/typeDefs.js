@@ -7,6 +7,7 @@ export const productTypeDef = `
         image: String!
     }
     type Product {
+        id : Int!
         name : String!
         price : Int!
         description : String!
