@@ -5,22 +5,18 @@ export const purchaseTypeDef = `
     }
     type purchaseCreateShoppingList {
         _id: String!,
-        user_id: String!,
         product_list: [purchaseProductModel]!
     }
     type purchaseUpdateShoppingList {
         _id: String!,
-        user_id: String!,
         product_list: [purchaseProductModel]!
     }
     type purchaseDeleteShoppingList {
         _id: String!,
-        user_id: String!,
         product_list: [purchaseProductModel]!
     }
     type purchaseGetShoppingList{
         _id: String!,
-        user_id: String!,
         product_list: [purchaseProductModel]!
     }
     input purchaseProductModelInput{
@@ -28,8 +24,8 @@ export const purchaseTypeDef = `
         quantity: Int!
     }
     input purchaseCreateShoppingListInput{
-        product_list:[purchaseProductModelInput],
-        user_id: String
+        _id: String!,
+        product_list:[purchaseProductModelInput]
     }
     input purchaseUpdateShoppingListInput{
         product_list:[purchaseProductModelInput]

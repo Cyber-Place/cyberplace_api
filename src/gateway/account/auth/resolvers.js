@@ -28,10 +28,9 @@ const resolvers = {
 			
 			response.then(result=>{
 				if(result.message=="Register new account successfully"){
-					console.log("aca")
-					const nuevo={"user_id":user.username,"product_list":[]}
+					const nuevo={"_id":user.username,"product_list":[]}
 					product_purchase_resolvers.Mutation.createShoppingList(_,{shoppingList:nuevo})
-					console.log("respuesta:",result)
+
 				}
 				
 			})
