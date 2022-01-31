@@ -1,6 +1,18 @@
 export const purchaseTypeDef = `
+    type productModelGet{
+        id : Int!
+        name : String!
+        price : Int!
+        description : String!
+        stars: Int!
+        img_url: String!
+    }
     type purchaseProductModel{
         product_id: String!,
+        quantity: Int!
+    }
+    type purchaseProductModelGet{
+        product: productModelGet!,
         quantity: Int!
     }
     type purchaseCreateShoppingList {
@@ -9,7 +21,7 @@ export const purchaseTypeDef = `
     }
     type purchaseUpdateShoppingList {
         _id: String!,
-        product_list: [purchaseProductModel]!
+        product_list: [purchaseProductModelGet]!
     }
     type purchaseDeleteShoppingList {
         _id: String!,
@@ -17,7 +29,7 @@ export const purchaseTypeDef = `
     }
     type purchaseGetShoppingList{
         _id: String!,
-        product_list: [purchaseProductModel]!
+        product_list: [purchaseProductModelGet]!
     }
     input purchaseProductModelInput{
         product_id: String!,

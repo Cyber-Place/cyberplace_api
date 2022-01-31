@@ -2,6 +2,7 @@ import { generalRequest, getRequest } from '../../utilities';
 import { url, port, entryPoint } from './server';
 
 import authResolvers from '../account/auth/resolvers';
+import productResolvers from '../products/resolvers'
 
 const URL = `http://${url}:${port}/${entryPoint}`;
 
@@ -15,7 +16,20 @@ const resolvers = {
         */
         //get shooping list by id
 		shoppingListById: (_, {id}) => {
-			return generalRequest(`${URL}/${id}`, 'GET');
+			let productList=[]
+			async function doSomething() {
+				let generalResponse= await generalRequest(`${URL}/${id}`, 'GET')
+				productList=generalResponse.product_list
+				for(let product in productList){
+					let producto= await productResolvers.Query.productsById(_, {id:productList[product].product_id})
+					productList[product].product=producto
+				}
+				return generalResponse
+			}
+			return doSomething().then(final=>{
+				return final
+			})
+
 		},
 
 		/*historyByUsername: (_, {username}) => {
@@ -41,7 +55,20 @@ const resolvers = {
 			return generalRequest(`${URL}`, 'POST', shoppingList);
 		},
 		updateShoppingList: (_, {id,shoppingList}) => {
-			return generalRequest(`${URL}/${id}`, 'PATCH', shoppingList);
+			let productList=[]
+			//return generalRequest(`${URL}/${id}`, 'PATCH', shoppingList);
+			async function doSomething() {
+				let generalResponse= await generalRequest(`${URL}/${id}`, 'PATCH', shoppingList)
+				productList=generalResponse.product_list
+				for(let product in productList){
+					let producto= await productResolvers.Query.productsById(_, {id:productList[product].product_id})
+					productList[product].product=producto
+				}
+				return generalResponse
+			}
+			return doSomething().then(final=>{
+				return final
+			})
 		},
 		deleteShoppingList: (_, {id}) => {
 			return generalRequest(`${URL}/${id}`, 'DELETE');
