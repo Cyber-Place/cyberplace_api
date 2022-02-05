@@ -2,8 +2,12 @@ version: '3'
 
 services:
   cyberplace_api:
-    image: cyberplace_api
+    image: juarodriguezc/cp-api
     build:
       context: .
-    network_mode: host
-
+    #network_mode: host
+    environment:
+      - ACCOUNT_URL=localhost
+      - HISTORY_URL=localhost
+    ports:
+      - 5000:5000
