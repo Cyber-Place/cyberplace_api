@@ -1,5 +1,6 @@
 // export const url = '172.0.0.1'
-export const url = 'localhost'
-// export const url = 'host.docker.internal'
+require("dotenv").config()
+
+export const url = process.env.PRODUCT_URL
 export const port = '3333'
 export const entryPoint = 'products'
